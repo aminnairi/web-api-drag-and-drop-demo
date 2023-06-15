@@ -15,7 +15,10 @@ function onDragenter(event) {
   // Prevent default behavior to allow drop
   event.preventDefault();
 
+  // Set the allowed effect to move in order to indicate we can drop
   event.dataTransfer.effectAllowed = "move";
+
+  // Set the drop effect to move to indicate we can drop
   event.dataTransfer.dropEffect = "move";
 }
 
@@ -23,7 +26,10 @@ function onDragover(event) {
   // Prevent default behavior to allow drop
   event.preventDefault();
 
+  // Set the allowed effect to move in order to indicate we can drop
   event.dataTransfer.effectAllowed = "move";
+
+  // Set the drop effect to move to indicate we can drop
   event.dataTransfer.dropEffect = "move";
 }
 
