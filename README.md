@@ -25,4 +25,4 @@ See [Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag
 
 ## License
 
-See [](./LICENSE).
+See [LICENSE](./LICENSE).
