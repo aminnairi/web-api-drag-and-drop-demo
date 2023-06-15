@@ -14,11 +14,17 @@ function onDragstart(event) {
 function onDragenter(event) {
   // Prevent default behavior to allow drop
   event.preventDefault();
+
+  event.dataTransfer.effectAllowed = "move";
+  event.dataTransfer.dropEffect = "move";
 }
 
 function onDragover(event) {
   // Prevent default behavior to allow drop
   event.preventDefault();
+
+  event.dataTransfer.effectAllowed = "move";
+  event.dataTransfer.dropEffect = "move";
 }
 
 function onDrop(event) {
