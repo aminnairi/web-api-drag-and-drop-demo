@@ -1,86 +1,92 @@
-// Récupération des éléments à déplacer
+// Get all draggable elements
 const draggableElements = document.querySelectorAll("[draggable='true']");
 
 function onDragstart(event) {
   if (typeof event.target.id !== "string") {
-    // Si l'élément déplacé n'a pas d'identifiant, on arrête la fonction
+    // Throw an error if the element has no id
     throw new Error("Draggable element must have an id");
   }
 
-  // Récupération de l'identifiant de l'élément ciblé
+  // Set the drag's format and data. This data will be dropped on our target
   event.dataTransfer.setData("text/plain", event.target.id);
 }
 
 function onDragenter(event) {
-  // Prévient le comportement par défaut pour permettre le drop
+  // Prevent default behavior to allow drop
   event.preventDefault();
 }
 
 function onDragover(event) {
-  // Prévient le comportement par défaut pour permettre le drop
+  // Prevent default behavior to allow drop
   event.preventDefault();
 }
 
 function onDrop(event) {
-  // Récupération de l'identifiant de l'élément déplacé
+  // Get the id of the draggable element
   const id = event.dataTransfer.getData("text/plain");
 
-  // Récupération de l'élément déplacé
+  // Get the draggable element
   const draggableElement = document.getElementById(id);
 
   if (!(draggableElement instanceof HTMLElement)) {
-    // Si l'élément déplacé n'est pas un HTMLElement, on arrête la fonction
+    // Throw an error if the element is not an HTMLElement
     throw new Error("Draggable element must be an HTMLElement");
   }
 
-  // Récupération des éléments
+  // Clone the draggable element so that we can safely replace it
   const draggableCloneElement = draggableElement.cloneNode(true);
+
+  // Get the droppable element
   const droppableElement = event.target;
+
+  // Clone the droppable element so that we can safely replace it
   const droppableElementClone = droppableElement.cloneNode(true);
 
-  // Remplacement des éléments
+  // Replace the draggable element with the droppable element
   droppableElement.replaceWith(draggableCloneElement);
+
+  // Replace the droppable element with the draggable element
   draggableElement.replaceWith(droppableElementClone);
 
-  // Ajout des événements de drag and drop sur les nouveaux éléments
+  // Add the necessary listeners to the draggable element
   draggableCloneElement.addEventListener("dragstart", onDragstart);
   draggableCloneElement.addEventListener("dragenter", onDragenter);
   draggableCloneElement.addEventListener("dragover", onDragover);
   draggableCloneElement.addEventListener("drop", onDrop);
 
-  // Ajout des événements de drag and drop sur les nouveaux éléments
+  // Add the necessary listeners to the droppable element
   droppableElementClone.addEventListener("dragstart", onDragstart);
   droppableElementClone.addEventListener("dragenter", onDragenter);
   droppableElementClone.addEventListener("dragover", onDragover);
   droppableElementClone.addEventListener("drop", onDrop);
 
-  // Suppression des données de l'élément déplacé
-  event.dataTransfer.clearData();
-
-  // Suppression des événements de drag and drop pour éviter les doublons
+  // Remove the old listeners from the draggable element to avoid memory leaks
   draggableElement.removeEventListener("dragstart", onDragstart);
   draggableElement.removeEventListener("dragenter", onDragenter);
   draggableElement.removeEventListener("dragover", onDragover);
   draggableElement.removeEventListener("drop", onDrop);
 
-  // Suppression des événements de drag and drop pour éviter les doublons
+  // Remove the old listeners from the droppable element to avoid memory leaks
   droppableElement.removeEventListener("dragstart", onDragstart);
   droppableElement.removeEventListener("dragenter", onDragenter);
   droppableElement.removeEventListener("dragover", onDragover);
   droppableElement.removeEventListener("drop", onDrop);
 
-  // Suppression des anciens éléments
+  // Delete the old transfered data
+  event.dataTransfer.clearData();
+
+  // Delete the old elements
   draggableElement.remove();
   droppableElement.remove();
 }
 
 function onDraggableElement(draggableElement) {
-  // Ajout des événements de drag and drop sur les éléments
+  // Add the necessary listeners to the draggable element
   draggableElement.addEventListener("dragstart", onDragstart);
   draggableElement.addEventListener("dragenter", onDragenter);
   draggableElement.addEventListener("dragover", onDragover);
   draggableElement.addEventListener("drop", onDrop);
 }
 
-// Boucle sur les éléments à déplacer
+// Loop through the draggable elements and add the necessary listeners
 draggableElements.forEach(onDraggableElement);
