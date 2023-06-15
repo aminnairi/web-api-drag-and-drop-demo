@@ -18,3 +18,7 @@ Open the [`index.html`](./index.html) file in your favorite browser, or use the 
 ```bash
 chromium index.html
 ```
+
+## Documentation
+
+See [Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
