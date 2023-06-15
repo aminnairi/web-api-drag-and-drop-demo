@@ -25,9 +25,8 @@ p {
   display: grid;
   gap: 10px;
   width: min-content;
-  grid-template-areas:  "a b d"
-                        "e f g"
-                        "h i j";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 img:hover {
