@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Drag & Drop Demo",
+  "version": "0.0.1",
+  "description": "Drag & Drop Demo",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "scope": "/web-api-drag-and-drop-demo/",
+  "short_name": "Drag & Drop",
+  "start_url": "/web-api-drag-and-drop-demo/",
+  "id": "/web-api-drag-and-drop-demo/",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "../icons/icon.png",
+      "type": "image/png",
+      "sizes": "500x500",
+      "purpose": "any maskable"
+    }
+  ]
+}
